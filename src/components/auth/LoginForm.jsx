@@ -67,8 +67,8 @@ export default function LoginForm() {
 
   // Prefill credentials for user login
   const handleLoginAsUser = () => {
-    setValue("email", "johndoe@example.com");
-    setValue("password", "password123");
+    setValue("email", "shifat32153@gmail.com");
+    setValue("password", "naim1234@##");
   };
 
   // Prefill credentials for admin login
