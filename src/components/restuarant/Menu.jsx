@@ -61,8 +61,20 @@ export function Menu() {
     }
   };
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error loading menu items</div>;
+  if (loading) return (
+    <div className="flex justify-center items-center min-h-screen">
+      <div className="loader text"></div>
+    </div>
+  );
+  
+  if (error) return (
+    <div className="flex justify-center items-center min-h-screen">
+      <div className="text-red-500 bg-red-100 p-4 rounded-lg shadow-md">
+        <p className="font-semibold">Error loading data!</p>
+        <p>{error}</p>
+      </div>
+    </div>
+  );
 
   const handlePlaceOrder = () => {
     navigate(`/order-confirmation`, {

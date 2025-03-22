@@ -1,5 +1,5 @@
 import { X } from "lucide-react";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useAxios } from "../../hooks/useAxios";
 import Field from "../common/Field";
@@ -15,6 +15,10 @@ export default function RestaurantForm({ onClose, editData, setRestaurantList, r
   } = useForm();
   const { createRestaurant, updateRestaurant, loading, error } = useRestaurantApi();
 
+  // Manage local loading state for form submission
+  const [formLoading, setFormLoading] = useState(false);
+  const [formError, setFormError] = useState(null);
+
   // Pre-populate form fields if editData is available
   useEffect(() => {
     if (editData) {
@@ -26,6 +30,9 @@ export default function RestaurantForm({ onClose, editData, setRestaurantList, r
   }, [editData, setValue]);
 
   const onSubmit = async (data) => {
+    setFormLoading(true);
+    setFormError(null); // Reset error before submitting
+
     const formData = new FormData();
     formData.append("name", data.name);
     formData.append("description", data.description);
@@ -42,7 +49,6 @@ export default function RestaurantForm({ onClose, editData, setRestaurantList, r
         response = await api.post("/restuarant/restaurants/create/", formData);
       }
 
-      console.log(response);
       if (response.status === 200 || response.status === 201) {
         // Update the restaurant list with the response data (new or updated)
         const updatedRestaurantList = editData
@@ -54,10 +60,13 @@ export default function RestaurantForm({ onClose, editData, setRestaurantList, r
         console.log(editData ? "Restaurant updated successfully!" : "Restaurant added successfully!");
       } else {
         console.error("Failed to submit form.");
+        setFormError("Failed to submit form. Please try again.");
       }
     } catch (error) {
       console.error("Error submitting the form:", error);
+      setFormError("An error occurred while submitting the form. Please try again.");
     } finally {
+      setFormLoading(false);
       onClose();
     }
   };
@@ -75,6 +84,9 @@ export default function RestaurantForm({ onClose, editData, setRestaurantList, r
         <h2 className="text-xl font-semibold text-gray-800 mb-4 text-center">
           {editData ? "Edit Restaurant" : "Add Restaurant"}
         </h2>
+
+        {formError && <div className="text-red-600 text-center mb-4">{formError}</div>}
+
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <Field label="Name" htmlFor="name" error={errors.name}>
             <input
@@ -114,8 +126,9 @@ export default function RestaurantForm({ onClose, editData, setRestaurantList, r
           <button
             type="submit"
             className="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-200"
+            disabled={formLoading}
           >
-            {editData ? "Update Restaurant" : "Add Restaurant"}
+            {formLoading ? "Submitting..." : editData ? "Update Restaurant" : "Add Restaurant"}
           </button>
         </form>
       </div>

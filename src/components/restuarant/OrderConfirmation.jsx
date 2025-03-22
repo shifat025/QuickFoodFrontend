@@ -50,7 +50,7 @@ export function OrderConfirmation() {
   
       if (response.status === 201) {
         console.log("Order placed successfully!", response.data);
-        // navigate('/order-tracking', { state: response.data });
+        navigate('/profile');
         // Redirect to a success page or show a confirmation message
       } else {
         console.error("Failed to place order.");

@@ -171,6 +171,14 @@ export default function AddMenuModal({
                 required={!edit} // Image is only required for new items
               />
             </div>
+            {loading && (
+              <div className="text-center text-gray-500">Loading...</div>
+            )}
+            {error && (
+              <div className="text-center text-red-500">
+                Error: {error.message || "Something went wrong"}
+              </div>
+            )}
             <div className="flex justify-end gap-4 pt-4">
               <button
                 type="button"
@@ -185,6 +193,7 @@ export default function AddMenuModal({
               <button
                 type="submit"
                 className="px-6 py-3 border border-transparent rounded-lg text-base font-medium text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-200 shadow-lg hover:shadow-xl"
+                disabled={loading} // Disable button while loading
               >
                 {edit ? "Update Menu Item" : "Add to Menu"}
               </button>

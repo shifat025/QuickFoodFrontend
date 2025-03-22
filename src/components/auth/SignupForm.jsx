@@ -23,11 +23,6 @@ export default function RegisterForm() {
       });
     } else {
       const cleanedData = { ...data };
-      if (data.role) {
-        cleanedData.role = true;
-      } else {
-        delete cleanedData.role; // Remove role if not admin
-      }
 
       setLoading(true);
 
@@ -49,7 +44,6 @@ export default function RegisterForm() {
       }
     }
   };
-
 
   return (
     <form className="" onSubmit={handleSubmit(submitForm)}>
@@ -130,25 +124,11 @@ export default function RegisterForm() {
             type="password"
             id="confirm_password"
             placeholder="Confirm Password"
-            autoComplete="confirm_assword"
+            autoComplete="confirm_password"
           />
         </Field>
       </div>
-      <div className="mb-6 flex gap-2 items-center">
-        <label htmlFor="role" className="flex gap-2 items-center">
-          <input
-            {...register("role")}
-            type="checkbox"
-            id="role"
-            className="px-4 py-3 rounded-lg border border-gray-300"
-          />
-          Register as Admin
-        </label>
-        {errors.role && (
-          <p className="text-red-500 text-sm mt-1">{errors.role.message}</p>
-        )}
-      </div>
-
+     
       <button
         type="submit"
         className="w-full bg-primary text-white py-3 rounded-lg mb-4"

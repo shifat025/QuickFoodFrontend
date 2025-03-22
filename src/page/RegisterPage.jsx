@@ -1,9 +1,4 @@
 import { Link } from "react-router-dom";
-
-// import SalyONe from "../assets/Saly-1.png"
-// import Logo from "../assets/logo.svg"
-// import WhiteLogo from "../assets/logo-white.svg"
-
 import { ToastContainer } from "react-toastify";
 import RegisterForm from "../components/auth/SignupForm";
 
@@ -15,25 +10,14 @@ export default function RegisterPage() {
       <div className="flex min-h-screen max-h-screen">
         
         {/* Left side  */}
-        <div className="hidden  lg:flex lg:w-1/2 bg-primary flex-col justify-between p-12  h-full fixed left-0 top-0">
+        <div className="hidden lg:flex lg:w-1/2 bg-primary flex-col justify-center items-center jus p-12 h-full fixed left-0 top-0">
           <div className="text-white">
-            {/* <img src={WhiteLogo} className="h-8" /> */}
-
-            {/* <img
-              src={SalyONe}
-              alt="Illustration"
-              className="mx-auto 2xl:ml-0 max-h-64  max-w-lg"
-            /> */}
-
-            <h2 className="text-3xl font-bold mb-1">Sign Up Now</h2>
+            <h2 className="text-3xl font-bold mb-1">Join Our Restaurant Network</h2>
             <p className="text-xl mb-4 font-medium">
-              Boost Your Learning Capabilities
+              Enhance Your Dining Experience
             </p>
             <p className="mb-8 max-w-lg">
-              Logging in unlocks your personal progress tracker, letting you
-              evaluate your performance and see how you stack up against others.
-              Whether you're preparing for exams, improving your knowledge, or
-              simply having fun, there's no better way to sharpen your mind.
+              Sign up to become part of our restaurant management system, where you can easily manage your menu, track orders, and provide a seamless dining experience for your customers. Simplify your operations and elevate your service today.
             </p>
           </div>
         </div>
@@ -43,15 +27,14 @@ export default function RegisterPage() {
           <div className="w-full max-w-lg ">
             <h2 className="text-3xl font-bold mb-3 flex gap-2 items-center">
               <span>Welcome to</span>
-              {/* <img src={Logo} className="h-7" /> */}
             </h2>
-            <h1 className="text-4xl font-bold mb-6">Sign Up</h1>
+            <h1 className="text-4xl font-bold mb-6">Restaurant Sign Up</h1>
 
             <RegisterForm/>
 
             <div className="mt-2 text-gray-400">
               <p className="text-center">
-                Already have account ?{" "}
+                Already have an account?{" "}
                 <Link to="/login" className="text-primary">
                   Sign In
                 </Link>

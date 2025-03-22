@@ -9,7 +9,6 @@ import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import Header from "../common/Header";
 import RestaurantForm from "../Form/RestuarantForm";
-
 import { Link } from "react-router-dom";
 import useRestaurantApi from "../../features/Restuarant/restaurantApi";
 import OrderHistory from "./OrderHistory";
@@ -21,8 +20,7 @@ export function ProfilePage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editRestaurant, setEditRestaurant] = useState(null);
   const [restaurantList, setRestaurantList] = useState([]);
-  const { getRestaurant, deleteRestaurant, loading, error } =
-    useRestaurantApi();
+  const { getRestaurant, deleteRestaurant, loading, error } = useRestaurantApi();
 
   // Fetch restaurant data
   useEffect(() => {
@@ -55,8 +53,20 @@ export function ProfilePage() {
     }
   };
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
+  if (loading) return (
+    <div className="flex justify-center items-center min-h-screen">
+      <div className="loader text"></div>
+    </div>
+  );
+  
+  if (error) return (
+    <div className="flex justify-center items-center min-h-screen">
+      <div className="text-red-500 bg-red-100 p-4 rounded-lg shadow-md">
+        <p className="font-semibold">Error loading data!</p>
+        <p>{error}</p>
+      </div>
+    </div>
+  );
 
   return (
     <>

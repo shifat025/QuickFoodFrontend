@@ -1,13 +1,25 @@
+import Cookies from "js-cookie";
 import { ShoppingBag, User } from "lucide-react";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import RestaurantForm from "../Form/RestuarantForm";
 
 export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { auth } = useAuth();
+  const { auth } = useAuth(); // Assuming useAuth hook provides logout functionality
   const roles = auth?.user?.role;
+
+  const navigate = useNavigate(); // To redirect after logout
+
+  const handleLogout = () => {
+    Cookies.remove("authToken", { secure: true, sameSite: "Strict" });
+    Cookies.remove("refreshToken", { secure: true, sameSite: "Strict" });
+    Cookies.remove("user", { secure: true, sameSite: "Strict" });
+
+    // Navigate to the login page
+    navigate("/login");
+  };
 
   return (
     <>
@@ -55,22 +67,40 @@ export default function Header() {
             </div>
             {/* Cart and Profile */}
             <div className="flex items-center space-x-4">
-              {/* <Link
-                to="/cart"
-                className="relative p-1 rounded-full text-gray-500 hover:text-gray-700"
-              >
-                <ShoppingBag className="h-6 w-6" aria-label="Shopping Cart" />
-                <span className="absolute -top-1 -right-1 h-4 w-4 bg-blue-600 rounded-full flex items-center justify-center text-xs text-white">
-                  2
-                </span>
-              </Link> */}
-              <Link
-                to="/profile"
-                className="flex items-center text-sm text-gray-700 hover:text-gray-900"
-              >
-                <User className="h-6 w-6" aria-label="User Profile" />
-                <span className="ml-2 hidden md:inline">Account</span>
-              </Link>
+              {/* Sign-in/Sign-up Links if not authenticated */}
+              {!auth?.user ? (
+                <>
+                  <Link
+                    to="/login"
+                    className="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium"
+                  >
+                    Sign In
+                  </Link>
+                  <Link
+                    to="/register"
+                    className="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium"
+                  >
+                    Sign Up
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link
+                    to="/profile"
+                    className="flex items-center text-sm text-gray-700 hover:text-gray-900"
+                  >
+                    <User className="h-6 w-6" aria-label="User Profile" />
+                    <span className="ml-2 hidden md:inline">Account</span>
+                  </Link>
+                  {/* Logout Button */}
+                  <button
+                    onClick={handleLogout}
+                    className="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium"
+                  >
+                    Logout
+                  </button>
+                </>
+              )}
             </div>
           </div>
         </div>

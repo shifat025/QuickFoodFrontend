@@ -11,9 +11,10 @@ export default function HomePage() {
       <Header />
       <div className="max-w-6xl mx-auto">
         <Hero />
-        <PopularCategories/>
-        <FeaturedSection/>
-        <RestaurantList onSelectRestaurant={() => {}}/>
+
+        <FeaturedSection />
+        <RestaurantList onSelectRestaurant={() => {}} />
+        <PopularCategories />
       </div>
       <Footer />
     </div>

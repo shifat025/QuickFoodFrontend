@@ -32,6 +32,30 @@ export default function MenuList({ menuItems, setMenuItems, handleEdit }) {
     }
   };
 
+  if (loading) return (
+    <div className="flex justify-center items-center min-h-screen">
+      <div className="loader text"></div>
+    </div>
+  );
+  
+  if (error) return (
+    <div className="flex justify-center items-center ">
+      <div className="text-red-500 bg-red-100 p-4 rounded-lg shadow-md">
+        <p className="font-semibold">Error loading data!</p>
+        <p>{error}</p>
+      </div>
+    </div>
+  );
+  
+  if (error) return (
+    <div className="flex justify-center items-center min-h-screen">
+      <div className="text-red-500 bg-red-100 p-4 rounded-lg shadow-md">
+        <p className="font-semibold">Error loading data!</p>
+        <p>{error}</p>
+      </div>
+    </div>
+  );
+
   return (
     <section className="bg-white rounded-xl shadow-lg p-8">
       <h2 className="text-3xl font-serif font-bold mb-10 text-gray-800 text-center">
