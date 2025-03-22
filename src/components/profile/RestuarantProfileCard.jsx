@@ -21,7 +21,7 @@ export default function RestaurantProfileCard({
         >
           <div onClick={() => handleCardClick(restaurant.id)}>
             <img
-              src={`http://127.0.0.1:8000/${restaurant.image}`}
+              src={`https://quickfood-x9fk.onrender.com/${restaurant.image}`}
               alt={restaurant.name}
               className="w-full h-48 object-cover"
             />

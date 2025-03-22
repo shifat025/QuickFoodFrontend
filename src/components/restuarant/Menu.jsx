@@ -121,7 +121,7 @@ export function Menu() {
                     <p className="text-gray-600 mt-2">{item.description}</p>
                     <p className="text-gray-800 font-medium mt-2 text-xl">${item.price}</p>
                   </div>
-                  <img src={item.imageUrl} alt={item.name} className="w-28 h-28 object-cover rounded-lg ml-4 shadow-md" />
+                  <img src={`https://quickfood-x9fk.onrender.com/${item.image}`} alt={item.name} className="w-28 h-28 object-cover rounded-lg ml-4 shadow-md" />
                 </div>
                 <div className="mt-4 flex justify-end items-center space-x-3">
                   <button

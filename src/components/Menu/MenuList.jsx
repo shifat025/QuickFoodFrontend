@@ -68,7 +68,7 @@ export default function MenuList({ menuItems, setMenuItems, handleEdit }) {
             className="group rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300 transform hover:-translate-y-1 w-72 mx-auto relative"
           >
             <img
-              src={`http://127.0.0.1:8000/${item.image}`}
+              src={`https://quickfood-x9fk.onrender.com/${item.image}`}
               alt={item.name}
               className="w-full h-40 object-cover"
             />

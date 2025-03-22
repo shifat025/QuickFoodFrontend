@@ -10,7 +10,7 @@ export default function RestuarantCard({ Restaurants }) {
         >
           <Link to={`restaurant/${restaurant.id}`}>
             <img
-              src={`http://localhost:8000/${restaurant.image}`}
+              src={`https://quickfood-x9fk.onrender.com/${restaurant.image}`}
               alt={restaurant.name}
               className="w-full h-48 object-cover"
             />
